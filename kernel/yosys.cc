@@ -329,6 +329,8 @@ int run_command(const std::string &command, std::function<void(const std::string
 		return -1;
 #ifdef _WIN32
 	return ret;
+#elif defined(__FreeBSD__)
+	return ret;
 #else
 	return WEXITSTATUS(ret);
 #endif
@@ -658,6 +660,20 @@ std::string proc_self_dirname()
 	while (buflen > 0 && path[buflen-1] != '/')
 		buflen--;
 	return std::string(path, buflen);
+}
+#elif defined(__FreeBSD__)
+/* this could DRY some */
+std::string proc_self_dirname()
+{
+        char path[PATH_MAX];
+        #define PROCCURLINKPATH  "/proc/curproc/file"
+        ssize_t buflen = readlink(PROCCURLINKPATH, path, sizeof(path));
+        if (buflen < 0) {
+                log_error("readlink(PROCCURLINKPATH) failed:%s\n", strerror(errno));
+        }
+        while (buflen > 0 && path[buflen-1] != '/')
+                buflen--;
+        return std::string(path, buflen);
 }
 #elif defined(__APPLE__)
 std::string proc_self_dirname()
