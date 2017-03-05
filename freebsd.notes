@@ -1,0 +1,35 @@
+
+install ports:
+
+gawk
+gmake
+libftdi
+mercurial
+tcl-wrapper
+cscope
+
+
+
+ABC  diff for readline In usr/local and strip ldl:
+
+diff -r 3a95bfa55df7 Makefile
+--- a/Makefile	Sat Feb 25 13:34:54 2017 -0800
++++ b/Makefile	Sun Mar 05 20:25:04 2017 +0000
+@@ -70,7 +70,7 @@
+ 
+ # whether to use libreadline
+ ifndef ABC_USE_NO_READLINE
+-  CFLAGS += -DABC_USE_READLINE $(ABC_READLINE_INCLUDES)
++  CFLAGS += -DABC_USE_READLINE $(ABC_READLINE_INCLUDES) -I/usr/local/include
+   LIBS += $(ABC_READLINE_LIBRARIES)
+   $(info $(MSG_PREFIX)Using libreadline)
+ endif
+@@ -117,7 +117,7 @@
+ endif
+ 
+ # LIBS := -ldl -lrt
+-LIBS += -ldl -lm
++LIBS +=  -lm
+ ifneq ($(findstring Darwin, $(shell uname)), Darwin)
+    LIBS += -lrt
+ endif

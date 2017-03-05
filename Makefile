@@ -95,6 +95,7 @@ OBJS = kernel/version_$(GIT_REV).o
 # will remove the 'abc' directory and you do not want to accidentally
 # delete your work on ABC..
 ABCREV = 3a95bfa55df7
+ABCREV = default
 ABCPULL = 1
 ABCURL ?= https://bitbucket.org/alanmi/abc
 ABCMKARGS = CC="$(CXX)" CXX="$(CXX)"
