@@ -33,3 +33,10 @@ diff -r 3a95bfa55df7 Makefile
  ifneq ($(findstring Darwin, $(shell uname)), Darwin)
     LIBS += -lrt
  endif
+
+
+
+kernel/yosys.cc
+#elif defined(__FreeBSD__) 
+        return ret; 
+#else
