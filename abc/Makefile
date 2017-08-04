@@ -39,7 +39,7 @@ ARCHFLAGS_EXE ?= ./arch_flags
 $(ARCHFLAGS_EXE) : arch_flags.c
 	$(CC) arch_flags.c -o $(ARCHFLAGS_EXE)
 
-INCLUDES += -Isrc
+INCLUDES += -Isrc -I/usr/local/include
 
 ARCHFLAGS ?= $(shell $(CC) arch_flags.c -o $(ARCHFLAGS_EXE) && $(ARCHFLAGS_EXE))
 ARCHFLAGS := $(ARCHFLAGS)
